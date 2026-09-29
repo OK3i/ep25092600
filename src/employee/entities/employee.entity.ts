@@ -24,6 +24,9 @@ export class Employee {
   @Column()
   name!: string;
 
+  @Column({ nullable: true })
+  phone?: string;
+
   @Column('decimal', { precision: 12, scale: 2, transformer: decimalNumberTransformer })
   salary!: number;
 

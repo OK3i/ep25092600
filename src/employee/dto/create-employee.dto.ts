@@ -1,6 +1,6 @@
 ﻿import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsNumber, IsString, Min } from 'class-validator';
+import { IsInt, IsNumber, IsString, Min, Matches } from 'class-validator';
 
 export class CreateEmployeeDto {
   @ApiProperty({ example: '2000000000000' })
@@ -22,4 +22,11 @@ export class CreateEmployeeDto {
   @IsInt()
   @Min(1)
   companyId!: number;
+
+  @ApiProperty({ example: '+37360000000' })
+  @IsString()
+  @Matches(/^\+?\d{7,15}$/, { message: 'phone must be a valid phone number' })
+  phone!: string;
+
+  
 }
